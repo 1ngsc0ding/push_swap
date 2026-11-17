@@ -17,6 +17,12 @@ int	main(int argc, char **argv)
 		free_data(&data);
 		return (1);
 	}
+	// No numbers given: display nothing and exit successfully
+	if (data.a.size == 0)
+	{
+		free_data(&data);
+		return (0);
+	}
 	// Connect to the sorted algo here
 	free_data(&data);
 	return (0);

@@ -17,6 +17,7 @@ int	parse_number(const char **cursor, int *value)
 
 	number = 0;
 	sign = 1; // Default sign is positive
+
 	while (is_space_char(**cursor))
 		(*cursor)++;
 	if (**cursor == '+' || **cursor == '-')
@@ -26,17 +27,17 @@ int	parse_number(const char **cursor, int *value)
 		(*cursor)++;
 	}
 	if (!is_digit(**cursor))
-		return (1);
+		return (1); 
 	while (is_digit(**cursor))
 	{
-		number = number * 10 + (**cursor - '0');
-		if ((sign == 1 && number > INT_MAX)
-			|| (sign == -1 && number > -(long long)INT_MIN))
-			return (1);
+		number = number * 10 + (**cursor - '0'); // Convert char to it
+		if ((sign == 1 && number > INT_MAX) // Check for int_max overflow
+			|| (sign == -1 && number > -(long long)INT_MIN)) // Check for int_min overflow
+			return (1); 
 		(*cursor)++;
 	}
 	if (**cursor && !is_space_char(**cursor))
 		return (1);
-	*value = (int)(number * sign);
+	*value = (int)(number * sign); // Just cast it to int
 	return (0);
 }

@@ -8,9 +8,10 @@ void	print_error(void)
 void	free_data(t_data *data)
 {
 	free(data->a.values);
-	free(data->b.values);
 	data->a.values = NULL;
-	data->b.values = NULL;
 	data->a.size = 0;
+	
+	free(data->b.values);
+	data->b.values = NULL;
 	data->b.size = 0;
 }

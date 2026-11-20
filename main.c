@@ -17,7 +17,9 @@ int	main(int argc, char **argv)
 		free_data(&data);
 		return (1);
 	}
+
 	// Connect to the sorted algo here
+	
 	free_data(&data);
 	return (0);
 }

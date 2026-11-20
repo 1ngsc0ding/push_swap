@@ -12,11 +12,11 @@ static int	is_space_char(char c)
 
 int	parse_number(const char **cursor, int *value)
 {
-	long long	number;
-	int			sign;
+	long long	number; // Using long long to handle potential overflow
+	int			 sign;
 
 	number = 0;
-	sign = 1;
+	sign = 1; // Default sign is positive
 	while (is_space_char(**cursor))
 		(*cursor)++;
 	if (**cursor == '+' || **cursor == '-')
@@ -26,17 +26,17 @@ int	parse_number(const char **cursor, int *value)
 		(*cursor)++;
 	}
 	if (!is_digit(**cursor))
-		return (-1);
+		return (1);
 	while (is_digit(**cursor))
 	{
 		number = number * 10 + (**cursor - '0');
 		if ((sign == 1 && number > INT_MAX)
 			|| (sign == -1 && number > -(long long)INT_MIN))
-			return (-1);
+			return (1);
 		(*cursor)++;
 	}
 	if (**cursor && !is_space_char(**cursor))
-		return (-1);
+		return (1);
 	*value = (int)(number * sign);
-	return (1);
+	return (0);
 }

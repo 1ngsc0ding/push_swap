@@ -11,7 +11,7 @@ int	main(int argc, char **argv)
 	data.strategy = ADAPTIVE;
 
 	// If parsing fails, print "Error" and free the allocated memory before exiting
-	if (!parse_args(argc, argv, &data))
+	if (parse_args(argc, argv, &data) == 1)
 	{
 		print_error();
 		free_data(&data);

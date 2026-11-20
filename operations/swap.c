@@ -4,7 +4,7 @@ static void	swap(t_stack *stack)
 {
 	int	temp;
 
-	if (stack->size < 2)
+	if (stack->size < 2) // No swap needed for the stack with less than 2 elements
 		return ;
 	temp = stack->values[0];
 	stack->values[0] = stack->values[1];
